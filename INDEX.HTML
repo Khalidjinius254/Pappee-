@@ -1,0 +1,228 @@
+# Book Cafe
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Cafe</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background: url('https://www.shutterstock.com/video/clip-1107111967-lazy-cat-sleeps-cabin-camping-car-snowy') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .logo {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 100px; /* Adjust size as needed */
+        }
+        .nav-buttons {
+            margin: 20px 0;
+        }
+        .nav-buttons button {
+            margin-right: 10px;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #f0c040;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .nav-buttons button:hover {
+            background-color: #d1a030;
+        }
+        #about-us {
+            display: none;
+            margin-top: 20px;
+            color: white;
+        }
+        .genre-list {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .genre-item {
+            background-color: rgba(255, 255, 255, 0.8);
+            margin: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            transition: transform 0.3s;
+            width: calc(30% - 20px); /* Adjust width as needed */
+            text-align: center;
+        }
+        .genre-item:hover {
+            transform: scale(1.05);
+        }
+    </style>
+    <script>
+        let isLoggedIn = false;
+
+        // Function to handle login
+        function handleLogin(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                if (username === "" || password === "") {
+                    throw new Error("Username and password cannot be empty.");
+                }
+                isLoggedIn = true;
+                alert(`Welcome, ${username}!`);
+                displayHomeButton();
+            } catch (error) {
+                alert(`Error: ${error.message}`);
+            }
+        }
+
+        function displayHomeButton() {
+            const homeButton = document.getElementById('home-button');
+            homeButton.style.display = 'block';
+        }
+
+        function handleSignIn() {
+            alert("Sign in functionality to be implemented.");
+        }
+
+        function showAboutUs() {
+            const aboutUsSection = document.getElementById('about-us');
+            aboutUsSection.style.display = 'block';
+        }
+
+        function submitComment() {
+            const comment = document.getElementById('comment').value;
+            const commentsDisplay = document.getElementById('comments-display');
+
+            try {
+                if (comment.trim() === "") {
+                    throw new Error("Comment cannot be empty.");
+                }
+                const newComment = document.createElement('p');
+                newComment.textContent = comment;
+                commentsDisplay.appendChild(newComment);
+                document.getElementById('comment').value = ""; // Clear the textarea
+            } catch (error) {
+                alert(`Error: ${error.message}`);
+            }
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Book Cafe</h1>
+        <img src="pictures/icon.jpg" alt="Book Cafe Logo" class="logo"> <!-- Insert logo here -->
+        <div class="nav-buttons">
+            <button onclick="alert('Home button clicked!')">Home</button>
+            <button onclick="alert('Newsletter functionality to be implemented.')">Newsletter</button>
+            <button onclick="alert('Browse by genre functionality to be implemented.')">Browse by Genre</button>
+            <button onclick="alert('Help functionality to be implemented.')">Help</button>
+            <button onclick="showAboutUs()">About Us</button>
+        </div>
+    </header>
+
+    <main>
+        <section>
+            <h2>Login to Reserve Your Spot</h2>
+            <form onsubmit="handleLogin(event)">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+                <br>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                <br>
+                <button type="submit">Login</button>
+                <button type="button" onclick="handleSignIn()">Sign In</button>
+            </form>
+            <p style="font-style: italic;">Dive into a world of stories and sip on the perfect brew. Enjoy the cozy atmosphere and the joy of reading!</p>
+        </section>
+
+        <section>
+            <h2>Gallery</h2>
+            <div class="gallery">
+                <img src="pictures/bokcafe2.jpeg" alt="Book Cafe Interior" class="gallery-item">
+                <img src="pictures/bookcafe1.jpeg" alt="Coffee and Books" class="gallery-item">
+                <img src="pictures/bookcafe3.jpeg" alt="Reading Nook" class="gallery-item">
+                <img src="pictures/bookcafe4.jpeg" alt="Outdoor Seating" class="gallery-item">
+            </div>
+            <div>
+                <h3>✨ Welcome to Your New Favorite Hideaway ✨</h3>
+                <p>Hey there, book lover! 📚</p>
+                <p>Looking for a cozy little spot to relax, read, and recharge?</p>
+                <p>You’ve just found it.</p>
+                <p>At [This Book Café ], we’ve blended the best things in life:</p>
+                <p>Books + Coffee + Calm Vibes ☕💛</p>
+                <h4>🌟 What Makes Us Special?</h4>
+                <ul>
+                    <li>🛋️ Comfy corners to curl up with a good book</li>
+                    <li>📖 Carefully curated shelves — fiction, classics, new releases & more</li>
+                    <li>☕ Locally roasted coffee and homemade pastries</li>
+                    <li>🎧 Chill playlists and free Wi-Fi for study or creative time</li>
+                    <li>🎤 Monthly events – book clubs, poetry nights & open mics</li>
+                </ul>
+                <p>So grab a latte, pick a story, and lose track of time.</p>
+                <p>We’re saving you a seat.</p>
+                <p>🕰️ Open daily | 📍 [kileleshwa]</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Choose Your Book by Genre</h2>
+            <ul class="genre-list">
+                <li class="genre-item">🌟 Contemporary Fantasy</li>
+                <li class="genre-item">🌌 Epic Fantasy</li>
+                <li class="genre-item">🧙‍♂️ Fantasy</li>
+                <li class="genre-item">📜 Historical Fantasy</li>
+                <li class="genre-item">💖 Historical Romance</li>
+                <li class="genre-item">👻 Horror</li>
+                <li class="genre-item">😂 Humor</li>
+                <li class="genre-item">📚 Mainstream</li>
+                <li class="genre-item">🔍 Mystery</li>
+                <li class="genre-item">📖 Notification</li>
+                <li class="genre-item">💫 Paranormal Romance</li>
+                <li class="genre-item">❤️ Romance</li>
+                <li class="genre-item">🚀 Science Fiction</li>
+                <li class="genre-item">🌌 Space Opera</li>
+                <li class="genre-item">🔪 Thriller</li>
+                <li class="genre-item">👩‍💻 Women Fiction</li>
+                <li class="genre-item">✍️ Writing Advice</li>
+                <li class="genre-item">👦 Young Adults</li>
+            </ul>
+        </section>
+
+        <section id="about-us">
+            <h2>About Us</h2>
+            <p>At Book Cafe, we believe in the magic of stories and the comfort of a good cup of coffee. Our mission is to create a welcoming space where book lovers can gather, share their passion for literature, and enjoy a cozy atmosphere. Join us for events, book clubs, and a community that celebrates the joy of reading.</p>
+        </section>
+
+        <section>
+            <h2>Comments</h2>
+            <div id="comments-section">
+                <textarea id="comment" placeholder="Leave a comment..." rows="4" cols="50"></textarea>
+                <br>
+                <button onclick="submitComment()">Submit</button>
+            </div>
+            <div id="comments-display"></div>
+        </section>
+
+        <section id="home-button" style="display:none;">
+            <button onclick="alert('Home button clicked!')">Home</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Book Cafe. All rights reserved.</p>
+        <nav>
+            <ul>
+                <li><a href="https://www.instagram.com/khalidandy8" target="_blank">Instagram</a></li>
+                <li><a href="https://api.whatsapp.com/send?phone=254758356613&text=Hello!%20Thank%20you%20for%20choosing%20Book%20Cafe.%20We%20are%20excited%20to%20accommodate%20you%20and%20hope%20you%20have%20a%20wonderful%20time%20with%20us.%20If%20you%20have%20any%20questions%20or%20need%20assistance,%20please%20let%20us%20know.%20Thank%20you!" target="_blank">WhatsApp</a></li>
+                <li><a href="https://www.twitter.com" target="_blank">Twitter</a></li>
+                <li><a href="https://www.facebook.com/khalidAndy" target="_blank">Facebook</a></li>
+            </ul>
+        </nav>
+    </footer>
+</body>
+</html>
